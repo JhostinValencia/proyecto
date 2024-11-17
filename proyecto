@@ -1,0 +1,49 @@
+# Importar bibliotecas
+import os
+
+# Definir clase Tarea
+class Tarea:
+  def __init__(self, titulo, descripcion):
+    self.titulo = titulo
+    self.descripcion = descripcion
+
+# Definir clase GestorDeTareas
+class GestorDeTareas:
+  def __init__(self):
+    self.tareas = []
+
+  def agregar_tarea(self, titulo, descripcion):
+    tarea = Tarea(titulo, descripcion)
+    self.tareas.append(tarea)
+
+  def eliminar_tarea(self, indice):
+    del self.tareas[indice]
+
+  def listar_tareas(self):
+    for i, tarea in enumerate(self.tareas):
+      print(f"{i+1}. {tarea.titulo} - {tarea.descripcion}")
+
+# Crear instancia de GestorDeTareas
+gestor = GestorDeTareas()
+
+# Menú principal
+while True:
+  print("1. Agregar tarea")
+  print("2. Eliminar tarea")
+  print("3. Listar tareas")
+  print("4. Salir")
+  opcion = input("Ingrese una opción: ")
+
+  if opcion == "1":
+    titulo = input("Ingrese el título de la tarea: ")
+    descripcion = input("Ingrese la descripción de la tarea: ")
+    gestor.agregar_tarea(titulo, descripcion)
+  elif opcion == "2":
+    indice = int(input("Ingrese el índice de la tarea a eliminar: ")) - 1
+    gestor.eliminar_tarea(indice)
+  elif opcion == "3":
+    gestor.listar_tareas()
+  elif opcion == "4":
+    break
+  else:
+    print("Opción inválida")
